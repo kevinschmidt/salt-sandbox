@@ -1,0 +1,48 @@
+{
+  "handlers": {
+    "default": {
+      "type": "set",
+      "handlers": ["syslog", "slack"]
+    },
+    "keepalive": {
+      "type": "set",
+      "handlers": ["syslog", "slack", "opsgenie"]
+    },
+    "urgent": {
+      "type": "set",
+      "handlers": ["syslog", "slack", "opsgenie"]
+    },
+    "syslog": {
+      "type": "pipe",
+      "command": "/usr/bin/logger"
+    },
+    "opsgenie": {
+      "type": "pipe",
+      "command": "/opt/sensu/embedded/bin/handler-opsgenie.rb -j /etc/sensu/conf.d/handlers.json",
+      "filters": ["production"]
+    },
+    "slack": {
+      "type": "pipe",
+      "command": "/opt/sensu/embedded/bin/handler-slack.rb"
+    },
+    "graphite": {
+      "type": "transport",
+      "pipe": {
+        "name": "graphite",
+        "type": "topic",
+        "options": {
+          "durable": "true"
+        }
+      },
+      "mutator": "only_check_output"
+    }
+  },
+  "opsgenie": {
+    "customerKey": "{{opsgenie_apikey}}",
+    "source": "alias",
+    "overwrite_quiet_hours": false
+  },
+  "slack": {
+    "webhook_url": "{{slack_webhook}}"
+  }
+}

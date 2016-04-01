@@ -1,0 +1,15 @@
+{
+  "checks": {
+    "{{name}}": {
+      "command": "{{command}}",
+      "type": "{{type}}",
+      "handlers": ["{{'", "'.join(handlers)}}"],
+      "interval": {{interval}},
+      "occurrences": {{occurrences}},
+{% if playbook %}
+      "playbook": "{{playbook}}",
+{% endif %}
+      "subscribers": ["{{'", "'.join(subscribers)}}"]
+    }
+  }
+}

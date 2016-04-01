@@ -1,0 +1,11 @@
+{
+  "filters": {
+    "production": {
+      "attributes": {
+        "client": {
+          "environment": "eval: value == 'prod' or value == 'glo'"
+        }
+      }
+    }
+  }
+}
