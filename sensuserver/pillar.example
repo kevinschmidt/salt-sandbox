@@ -1,0 +1,35 @@
+stupidsoup:
+  sensu:
+    config:
+      checks:
+        check_cpu:
+          command: "check-cpu.rb"
+          subscribers: ['basic']
+          handlers: ['urgent']
+          occurrences: 10
+        check_disk:
+          command: "check-disk-usage.rb -c 90 -w 80 -K 90 -W 80"
+          subscribers: ['basic']
+          handlers: ['urgent']
+        check_load:
+          command: "check-load.rb"
+          subscribers: ['basic']
+          handlers: ['urgent']
+        check_free_memory:
+          command: "check-memory.rb -w 250 -c 150"
+          subscribers: ['basic']
+          handlers: ['urgent']
+          occurrences: 5
+        check_ntp:
+          command: "check-ntp.rb -w 50 -c 100"
+          subscribers: ['basic']
+          handlers: ['default']
+          occurrences: 5
+        check_process_ntp:
+          command: "check-process.rb -p ntpd"
+          subscribers: ['basic']
+          handlers: ['urgent']
+        check_process_salt_minion:
+          command: "check-process.rb -p salt-minion"
+          subscribers: ['basic']
+          handlers: ['urgent']
