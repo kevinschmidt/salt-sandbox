@@ -10,7 +10,8 @@
                interval=check['interval']|default(60),
                subscribers=check['subscribers']|default(['all']),
                occurrences=check['occurrences']|default(1),
-               playbook=check['playbook']|default(False)
+               playbook=check['playbook']|default(False),
+               source=check['source']|default(False)
               )
 }}
 {% endfor %}
