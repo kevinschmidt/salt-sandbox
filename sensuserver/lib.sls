@@ -10,7 +10,8 @@ generic check executor
                      interval=60,
                      subscribers=['all'],
                      occurrences=1,
-                     playbook=False
+                     playbook=False,
+                     source=False
                      ) %}
 
 /etc/sensu/conf.d/{{name}}.json:
@@ -29,6 +30,7 @@ generic check executor
         subscribers: {{subscribers}}
         occurrences: {{occurrences}}
         playbook: {{playbook}}
+        source: {{source}}
     - require:
       - file: /etc/sensu/conf.d/api.json
     - watch_in:

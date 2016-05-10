@@ -9,6 +9,9 @@
 {% if playbook %}
       "playbook": "{{playbook}}",
 {% endif %}
+{% if source %}
+      "source": "{{source}}",
+{% endif %}
       "subscribers": ["{{'", "'.join(subscribers)}}"]
     }
   }
